@@ -6,19 +6,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qbryx.domain.Customer;
+import com.qbryx.domain.Category;
+import com.qbryx.domain.User;
+import com.qbryx.managers.RequestDispatcherManager;
 import com.qbryx.util.ServiceFactory;
 
 /**
- * Servlet implementation class RemoveFromCartServlet
+ * Servlet implementation class ManagementServlet
  */
-public class RemoveFromCartServlet extends HttpServlet {
+public class ManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveFromCartServlet() {
+    public ManagementServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +29,9 @@ public class RemoveFromCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub	
+		request.setAttribute("categories", ServiceFactory.productService().getCategories());
+		RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
 	}
 
 	/**
@@ -35,16 +39,7 @@ public class RemoveFromCartServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Customer customer = (Customer) request.getSession().getAttribute("customer");
-		
-		String cartId = customer.getCartId();
-		String upc = request.getParameter("upc");
-
-		boolean success = ServiceFactory.customerService().removeProductInCart(cartId, upc);
-		
-		if(success){
-			response.sendRedirect("customer_home.jsp");
-		}
+		response.sendRedirect("try.jsp");
 	}
 
 }

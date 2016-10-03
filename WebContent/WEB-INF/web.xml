@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>web-app-machine-problem</display-name>
+  <display-name>web-app-login</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -41,12 +36,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ProductServlet</display-name>
-    <servlet-name>ProductServlet</servlet-name>
+    <display-name>CustomerProductServlet</display-name>
+    <servlet-name>CustomerProductServlet</servlet-name>
     <servlet-class>com.qbryx.servlets.ProductServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ProductServlet</servlet-name>
+    <servlet-name>CustomerProductServlet</servlet-name>
     <url-pattern>/processProduct</url-pattern>
   </servlet-mapping>
   <servlet>
@@ -88,5 +83,35 @@
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagementServlet</display-name>
+    <servlet-name>ManagementServlet</servlet-name>
+    <servlet-class>com.qbryx.servlets.ManagementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagementServlet</servlet-name>
+    <url-pattern>/management</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchServlet</display-name>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>com.qbryx.servlets.SearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateProductServlet</display-name>
+    <servlet-name>CreateProductServlet</servlet-name>
+    <servlet-class>com.qbryx.servlets.CreateProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateProductServlet</servlet-name>
+    <url-pattern>/createProduct</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -34,7 +34,13 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public Product getProductByUpc(String upc) {
 		// TODO Auto-generated method stub
-		return productDao.getProductByUpc(upc);
+		return productDao.getProductByUpcCust(upc);
+	}
+
+	@Override
+	public Category getCategory(String categoryName) {
+		// TODO Auto-generated method stub
+		return categoryDao.getCategory(categoryName);
 	}
 
 }

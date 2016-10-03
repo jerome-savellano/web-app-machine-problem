@@ -8,6 +8,7 @@ import com.qbryx.domain.Product;
 public interface ProductService {
 	
 	List<Category> getCategories();
+	Category getCategory(String categoryName);
 	List<Product> getProductsByCategory(String categoryName);
 	Product getProductByUpc(String upc);
 }

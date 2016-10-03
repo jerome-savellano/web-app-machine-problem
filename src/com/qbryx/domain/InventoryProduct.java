@@ -4,10 +4,11 @@ import java.math.BigDecimal;
 
 public class InventoryProduct extends Product {
 	
+	private Product product;
 	private int stock;
 
-	public InventoryProduct(String upc, Category categoryId, String name, String description, BigDecimal price) {
-		super(upc, categoryId, name, description, price);
+	public InventoryProduct(Product product) {
+		super(product.getUpc(), product.getCategory(), product.getName(), product.getDescription(), product.getPrice());
 		// TODO Auto-generated constructor stub
 	}
 

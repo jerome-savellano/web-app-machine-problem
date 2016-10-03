@@ -27,7 +27,6 @@
 					<h1 class="page-header">
 						Hi, ${customer.getUsername()}! <input type="submit"
 							class="btn btn-warning btn-xs" value="Logout">
-
 					</h1>
 				</form>
 				<c:choose>
@@ -58,7 +57,7 @@
 								<tbody>
 									<c:forEach items="${productsInCart}" var="product"
 										varStatus="status">
-										<tr class="active">
+										<tr class="warning">
 											<input type="hidden" class="form-control" name="upc"
 												value="${product.getUpc()}">
 											<td>${product.getName()}</td>

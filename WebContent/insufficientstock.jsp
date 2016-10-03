@@ -30,7 +30,6 @@
 				<div class="jumbotron alert alert-danger">
 					<h2><strong>Sorry!</strong></h2>
 					<p>We have insufficient stocks for your intended purchase!</p>
-					<p>Redirecting back to home page...</p>
 				</div>
 			</div>
 		</div>

@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="2; url=customer">
+<meta http-equiv="refresh" content="1; url=management">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -29,7 +29,7 @@
 			<div class="col-md-12" style="padding: 50px;">
 				<div class="jumbotron alert alert-success">
 					<h2><strong>Success!</strong></h2>
-					<p>The item has been added to your cart!</p>
+					<p>The product has been created!</p>
 				</div>
 			</div>
 		</div>
