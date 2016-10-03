@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.qbryx.domain.Customer;
+import com.qbryx.managers.RequestDispatcherManager;
 import com.qbryx.util.ServiceFactory;
 
 /**
@@ -43,7 +44,7 @@ public class RemoveFromCartServlet extends HttpServlet {
 		boolean success = ServiceFactory.customerService().removeProductInCart(cartId, upc);
 		
 		if(success){
-			response.sendRedirect("customer_home.jsp");
+			response.sendRedirect("customer");
 		}
 	}
 

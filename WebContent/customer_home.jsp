@@ -16,8 +16,21 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome!</title>
+<script>
+	window.setTimeout(function() {
+		$(".alert-success").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+	}, 3000);
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -29,6 +42,13 @@
 							class="btn btn-warning btn-xs" value="Logout">
 					</h1>
 				</form>
+				<c:if test="${checkoutSuccess}">
+					<div class="alert alert-success fade in">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>Checkout successful!</strong> Continue to shop at QBRYX
+						BRYKaBRAX!
+					</div>
+				</c:if>
 				<c:choose>
 					<c:when test="${empty productsInCart}">
 						<h1 class="text-center text-muted">Your cart is empty. Start

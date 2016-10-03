@@ -114,4 +114,24 @@
     <servlet-name>CreateProductServlet</servlet-name>
     <url-pattern>/createProduct</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewProductToUpdateServlet</display-name>
+    <servlet-name>ViewProductToUpdateServlet</servlet-name>
+    <servlet-class>com.qbryx.servlets.ViewProductToUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewProductToUpdateServlet</servlet-name>
+    <url-pattern>/viewProd</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateProduct</display-name>
+    <servlet-name>UpdateProduct</servlet-name>
+    <servlet-class>com.qbryx.servlets.UpdateProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateProduct</servlet-name>
+    <url-pattern>/updateProduct</url-pattern>
+  </servlet-mapping>
 </web-app>

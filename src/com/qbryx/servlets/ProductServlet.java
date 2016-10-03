@@ -60,7 +60,7 @@ public class ProductServlet extends HttpServlet {
 		if (addProductToCart) {
 			response.sendRedirect("success.jsp");
 		} else {
-			response.sendRedirect("insufficientstock.jsp");
+			response.sendRedirect("insufficient_stock.jsp");
 		}
 	}
 

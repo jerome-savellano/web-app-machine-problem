@@ -29,7 +29,11 @@ public class ManagementServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		int viewFlag = (int) request.getSession().getAttribute("viewFlag");
+		viewFlag = 1;
+		
+		request.setAttribute("viewFlag", viewFlag);
 		request.setAttribute("categories", ServiceFactory.productService().getCategories());
 		RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
 	}
@@ -39,7 +43,6 @@ public class ManagementServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect("try.jsp");
 	}
 
 }

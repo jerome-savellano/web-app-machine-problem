@@ -10,6 +10,7 @@ public interface CustomerService {
 	List<CartProduct> getProductsInCart(String cartId);
 	String getCartId(int userId);
 	int getQuantityOfProductInCart(String cartId, String upc);
+	List<String> checkout(String cartId);
 	
 	boolean addProductInCart(CartProduct cartProduct, String cartId);
 	boolean removeProductInCart(String cartId, String upc);

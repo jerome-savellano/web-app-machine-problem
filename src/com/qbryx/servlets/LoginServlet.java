@@ -51,6 +51,9 @@ public class LoginServlet extends HttpServlet {
 				request.getSession().setAttribute("customer", customer);
 				response.sendRedirect("customer");
 			}else{
+				int viewFlag = 0;
+				
+				request.getSession().setAttribute("viewFlag", viewFlag);
 				request.getSession().setAttribute("manager", user);
 				response.sendRedirect("management");
 			}

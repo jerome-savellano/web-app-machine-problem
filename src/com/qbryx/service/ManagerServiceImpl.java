@@ -24,4 +24,10 @@ public class ManagerServiceImpl implements ManagerService {
 		// TODO Auto-generated method stub
 		return productDao.addProduct(product) && productDao.addProductStock(inventoryProduct);
 	}
+
+	@Override
+	public boolean updateProduct(Product product, InventoryProduct inventoryProduct) {
+		// TODO Auto-generated method stub
+		return productDao.updateProduct(product) && productDao.updateProductStock(inventoryProduct);
+	}
 }

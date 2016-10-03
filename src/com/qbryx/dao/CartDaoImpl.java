@@ -1,4 +1,4 @@
-package com.qbryx.dao;
+ package com.qbryx.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

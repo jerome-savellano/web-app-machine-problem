@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.qbryx.domain.Product;
 import com.qbryx.managers.RequestDispatcherManager;
 import com.qbryx.util.ServiceFactory;
+import com.qbryx.util.ViewFlag;
 
 /**
  * Servlet implementation class SearchServlet
@@ -37,6 +38,7 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	
 		boolean productNotFound = false;
 		Product product = ServiceFactory.managerService().getProductByUpc(request.getParameter("upc"));
 			
@@ -46,6 +48,7 @@ public class SearchServlet extends HttpServlet {
 			productNotFound = true;
 		}
 		
+		request.setAttribute("viewFlag", ViewFlag.setFlag(request, 1));
 		request.setAttribute("productNotFound", productNotFound);
 		request.setAttribute("product", product);
 		RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);

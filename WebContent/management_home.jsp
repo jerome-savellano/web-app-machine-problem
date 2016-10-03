@@ -25,6 +25,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome!</title>
+<script>
+	window.setTimeout(function() {
+		$(".alert-warning").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+
+		$(".alert-success").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+	}, 3000);
+</script>
 </head>
 <body>
 	<div class="container">
@@ -36,15 +47,17 @@
 		</form>
 
 		<ul class="nav nav-tabs">
-			<li><a data-toggle="tab" href="#menu1">Search
-					product by UPC</a></li>
-			<li><a data-toggle="tab" href="management_home.jsp#menu2">Update
-					product by category</a></li>
-			<li><a data-toggle="tab" href="#menu3">Add a product</a></li>
+			<li class="<c:if test="${viewFlag == 1}">active</c:if>"><a
+				data-toggle="tab" href="/search#menu1">Search product by UPC</a></li>
+			<li class="<c:if test="${viewFlag == 2}">active</c:if>"><a
+				data-toggle="tab" href="#menu2">Update product by category</a></li>
+			<li class="<c:if test="${viewFlag == 3}">active</c:if>"><a
+				data-toggle="tab" href="#menu3">Add a product</a></li>
 		</ul>
 
 		<div class="tab-content">
-			<div id="menu1" class="tab-pane fade">
+			<div id="menu1"
+				class="tab-pane fade <c:if test="${viewFlag == 1}">in active</c:if>">
 				<div class="container-fluid"
 					style="padding-left: 20%; padding-right: 20%; padding-top: 2%;">
 					<div class="row">
@@ -75,7 +88,7 @@
 					<c:otherwise>
 						<div class="container-fluid">
 							<div class="row">
-								<div class="col-md-12" style="text-align: center">
+								<div class="col-md-12">
 									<h2 class="page-header">${product.getName()}</h2>
 									<dl>
 										<dt>
@@ -137,11 +150,24 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div id="menu2" class="tab-pane fade">
-				 <div class="container-fluid">
-					<form method="post" action="management">
+			<div id="menu2"
+				class="tab-pane fade <c:if test="${viewFlag == 2}">in active</c:if>">
+				<div class="container-fluid">
+					<c:if test="${invalidCategorySelected}">
+						<div class="alert alert-danger">
+							<strong>Oops!</strong> Please select a category.
+						</div>
+					</c:if>
+					<form method="post" action="viewProd">
 						<div class="row" style="padding: 2%;">
-							<div class="col-md-8">
+							<c:if test="${productUpdated}">
+								<div class="alert alert-success fade in">
+									<a href="#" class="close" data-dismiss="alert"
+										aria-label="close">&times;</a> <strong>Success!</strong>
+									Product has been updated!
+								</div>
+							</c:if>
+							<div class="col-md-8" style="padding-left: 20%;">
 								<select class="form-control" name="category">
 									<option selected disabled>SELECT CATEGORY</option>
 									<c:forEach items="${categories}" var="item">
@@ -150,17 +176,34 @@
 								</select>
 							</div>
 							<div class="col-md-4">
-								<input type="submit" class="btn btn-info" value="VIEW CATEGORY">
+								<input type="submit" class="btn btn-info" value="Go!">
 							</div>
 						</div>
+						<c:if test="${categorySelected}">
+							<div class="list-group">
+								<c:forEach items="${productsByCategory}" var="item"
+									varStatus="status">
+									<a href="viewProd?upc=${item.getUpc()}" class="list-group-item">${item.getName()}</a>
+								</c:forEach>
+							</div>
+						</c:if>
 					</form>
+
 				</div>
 			</div>
-			<div id="menu3" class="tab-pane fade">
+			<div id="menu3"
+				class="tab-pane fade <c:if test="${viewFlag == 3}">in active</c:if>">
 				<div class="container-fluid" style="padding: 2%;">
 					<div class="row">
 						<div class="col-md-12"
 							style="padding-left: 15%; padding-right: 15%;">
+							<c:if test="${productCreated}">
+								<div class="alert alert-success fade in">
+									<a href="#" class="close" data-dismiss="alert"
+										aria-label="close">&times;</a> <strong>Success!</strong>
+									Product has been created!
+								</div>
+							</c:if>
 							<form action="createProduct" method="post">
 								<div class="form-group">
 									<label for="Name">Name </label> <input type="text" name="name"

@@ -12,20 +12,19 @@ import com.qbryx.domain.Category;
 import com.qbryx.domain.InventoryProduct;
 import com.qbryx.domain.Product;
 import com.qbryx.managers.RequestDispatcherManager;
-import com.qbryx.util.Parser;
 import com.qbryx.util.ServiceFactory;
 import com.qbryx.util.ViewFlag;
 
 /**
- * Servlet implementation class CreateProductServlet
+ * Servlet implementation class UpdateProduct
  */
-public class CreateProductServlet extends HttpServlet {
+public class UpdateProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateProductServlet() {
+    public UpdateProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,6 +34,7 @@ public class CreateProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -48,17 +48,17 @@ public class CreateProductServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		String price = request.getParameter("price");
 		String stock = request.getParameter("stock");
-		
+
 		Product product = new Product(upc, category, name, description, new BigDecimal(price));
 		InventoryProduct inventoryProduct = new InventoryProduct(product, Integer.parseInt(stock));
 		
-		boolean productCreated = ServiceFactory.managerService().addProduct(product, inventoryProduct);
+		boolean productUpdated = ServiceFactory.managerService().updateProduct(product, inventoryProduct);
 		
-		if(productCreated){
+		if(productUpdated){
 			
 			request.setAttribute("categories", ServiceFactory.productService().getCategories());
-			request.setAttribute("productCreated", productCreated);
-			request.setAttribute("viewFlag", ViewFlag.setFlag(request, 3));
+			request.setAttribute("productUpdated", productUpdated);
+			request.setAttribute("viewFlag", ViewFlag.setFlag(request, 2));
 			RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
 		}
 	}

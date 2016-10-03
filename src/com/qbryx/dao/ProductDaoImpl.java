@@ -14,12 +14,16 @@ import com.qbryx.managers.ConnectionManager;
 public class ProductDaoImpl implements ProductDao {
 	
 	private static final String GET_ALL_PRODUCTS = "";
-	private static final String GET_PRODUCTS_BY_CATEGORY = "select product.upc, product.name from product inner join category on product.category_id = category.category_id where category.name = ?";
+	private static final String GET_PRODUCTS_BY_CATEGORY = "select product.upc, product.name, product.category_id, category.name from product inner join category on product.category_id = category.category_id where category.name = ?";
 	private static final String GET_PRODUCT_BY_UPC_P = "select upc, name, category_id, description, price from product where upc = ?";
-	private static final String GET_PRODUCT_BY_UPC_M = "select p.name, .p.price, p.upc, c.category_id, c.name, p.description, pi.stock from product p inner join category c on p.category_id = c.category_id inner join product_inventory pi on p.upc = pi.upc  where p.upc = ?";
-	private static final String GET_PRODUCT_QUANTITY_ON_HAND = "select stock from product_inventory where upc = ?";
+	private static final String GET_PRODUCT_BY_UPC_M = "select p.name, p.price, p.upc, c.category_id, c.name as cname, p.description, pi.stock from product p inner join category c on p.category_id = c.category_id inner join product_inventory pi on p.upc = pi.upc  where p.upc = ?";
+	private static final String GET_PRODUCT_QUANTITY_ON_HAND = "select stock, upc from product_inventory where upc = ?";
+	private static final String GET_INVENTORY_PRODUCT = "select p.upc, p.stock from product_inventory p inner join customer_product_in_cart c on p.upc = c.upc where c.cart_id = 'jersav'";
 	private static final String ADD_PRODUCT = "insert into product (category_id, upc, name, description, price) values (?,?,?,?,?);";
 	private static final String ADD_PRODUCT_STOCK = "insert into product_inventory (upc, stock) values (?,?);";
+	private static final String UPDATE_PRODUCT = "UPDATE `qbryx`.`product` SET `name` = ?, `description` = ?, `price` = ? WHERE `upc` = ?;";
+	private static final String UPDATE_PRODUCT_INVENTORY = "UPDATE `qbryx`.`product_inventory` SET `stock` = ? WHERE `upc` = ?;";
+	
 	
 	@Override
 	public List<Product> getAllProducts() {
@@ -44,6 +48,7 @@ public class ProductDaoImpl implements ProductDao {
 				while(rs.next()){
 					Product product = new Product();
 					
+					product.setCategory(new Category(rs.getString("category_id"), rs.getString("name")));
 					product.setName(rs.getString("name"));
 					product.setUpc(rs.getString("upc"));
 					
@@ -140,7 +145,7 @@ public class ProductDaoImpl implements ProductDao {
 					mProduct.setName(rs.getString("name"));
 					mProduct.setPrice(rs.getBigDecimal("price"));
 					mProduct.setUpc(rs.getString("upc"));
-					mProduct.setCategory(new Category(rs.getString("category_id"), rs.getString("name")));
+					mProduct.setCategory(new Category(rs.getString("category_id"), rs.getString("cname")));
 					mProduct.setDescription(rs.getString("description"));
 					
 					product = new InventoryProduct(mProduct);
@@ -211,6 +216,88 @@ public class ProductDaoImpl implements ProductDao {
 		
 		ConnectionManager.close();
 		return false;
+	}
+
+	@Override
+	public boolean updateProduct(Product product) {
+		// TODO Auto-generated method stub
+		if(ConnectionManager.getConnection() != null){
+			PreparedStatement stmt;
+			
+			
+			try {
+				stmt = ConnectionManager.prepareStatement(UPDATE_PRODUCT);		
+				stmt.setString(1, product.getName());
+				stmt.setString(2, product.getDescription());
+				stmt.setBigDecimal(3, product.getPrice());
+				stmt.setString(4, product.getUpc());
+				
+				stmt.executeUpdate();
+				
+				ConnectionManager.close();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
+		
+		ConnectionManager.close();
+		return false;
+	}
+
+	@Override
+	public boolean updateProductStock(InventoryProduct inventoryProduct) {
+		// TODO Auto-generated method stub
+		if(ConnectionManager.getConnection() != null){
+			PreparedStatement stmt;
+			
+			try {
+				stmt = ConnectionManager.prepareStatement(UPDATE_PRODUCT_INVENTORY);
+				stmt.setInt(1, inventoryProduct.getStock());
+				stmt.setString(2, inventoryProduct.getUpc());
+				
+				stmt.executeUpdate();
+				
+				ConnectionManager.close();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		ConnectionManager.close();
+		return false;
+	}
+
+	@Override
+	public List<InventoryProduct> getProductInventory(String cartId) {
+		// TODO Auto-generated method stub
+		List<InventoryProduct> inventoryProducts = new ArrayList<>();
+		
+		if(ConnectionManager.getConnection() != null){
+			PreparedStatement stmt;
+			
+			
+			try {
+				stmt = ConnectionManager.prepareStatement(GET_INVENTORY_PRODUCT);
+				ResultSet rs = stmt.executeQuery();
+				
+				while(rs.next()){
+					inventoryProducts.add(new InventoryProduct(rs.getString("upc"), rs.getInt("stock")));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		ConnectionManager.close();
+		return inventoryProducts;
 	}
 
 }

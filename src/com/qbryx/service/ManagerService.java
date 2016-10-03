@@ -8,4 +8,5 @@ public interface ManagerService {
 	Product getProductByUpc(String upc);
 	
 	boolean addProduct(Product product, InventoryProduct inventoryProduct);
+	boolean updateProduct(Product product, InventoryProduct inventoryProduct);
 }
