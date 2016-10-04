@@ -134,4 +134,14 @@
     <servlet-name>UpdateProduct</servlet-name>
     <url-pattern>/updateProduct</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>sadwdsadw</display-name>
+    <servlet-name>sadwdsadw</servlet-name>
+    <servlet-class>dawdasdw.sadwdsadw</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sadwdsadw</servlet-name>
+    <url-pattern>/sadwdsadw</url-pattern>
+  </servlet-mapping>
 </web-app>

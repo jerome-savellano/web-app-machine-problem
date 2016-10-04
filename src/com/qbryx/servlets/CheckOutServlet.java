@@ -1,14 +1,13 @@
  package com.qbryx.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qbryx.domain.CartProduct;
+import com.qbryx.exception.InsufficientStockException;
 import com.qbryx.managers.RequestDispatcherManager;
 import com.qbryx.util.ServiceFactory;
 
@@ -32,13 +31,16 @@ public class CheckOutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String cartId = request.getParameter("cartId");
-		List<String> invalidProducts = ServiceFactory.customerService().checkout(cartId);
 		
-		if(invalidProducts.isEmpty()){
+		
+		
+		try {
+			
+			ServiceFactory.customerService().checkout(cartId);
 			request.setAttribute("checkoutSuccess", true);
 			request.setAttribute("categories", ServiceFactory.productService().getCategories());
 			RequestDispatcherManager.dispatch(this, "/customer_home.jsp", request, response);
-		}else{
+		} catch (InsufficientStockException e) {
 			response.sendRedirect("insufficient_stock.jsp");
 		}
 	}

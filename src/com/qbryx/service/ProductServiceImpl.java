@@ -21,25 +21,21 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public List<Category> getCategories() {
-		// TODO Auto-generated method stub
 		return categoryDao.getCategories();
 	}
 
 	@Override
 	public List<Product> getProductsByCategory(String categoryName) {
-		// TODO Auto-generated method stub
 		return productDao.getProductsByCategory(categoryName);
 	}
 
 	@Override
 	public Product getProductByUpc(String upc) {
-		// TODO Auto-generated method stub
-		return productDao.getProductByUpcCust(upc);
+		return productDao.getProductByUpc(upc);
 	}
 
 	@Override
 	public Category getCategory(String categoryName) {
-		// TODO Auto-generated method stub
 		return categoryDao.getCategory(categoryName);
 	}
 

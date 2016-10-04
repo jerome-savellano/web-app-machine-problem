@@ -20,27 +20,31 @@ import com.qbryx.util.ViewFlag;
  */
 public class UpdateProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateProduct() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+	public UpdateProduct() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String name = request.getParameter("name");
 		String upc = request.getParameter("upc");
@@ -51,16 +55,14 @@ public class UpdateProduct extends HttpServlet {
 
 		Product product = new Product(upc, category, name, description, new BigDecimal(price));
 		InventoryProduct inventoryProduct = new InventoryProduct(product, Integer.parseInt(stock));
-		
-		boolean productUpdated = ServiceFactory.managerService().updateProduct(product, inventoryProduct);
-		
-		if(productUpdated){
-			
-			request.setAttribute("categories", ServiceFactory.productService().getCategories());
-			request.setAttribute("productUpdated", productUpdated);
-			request.setAttribute("viewFlag", ViewFlag.setFlag(request, 2));
-			RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
-		}
+
+		ServiceFactory.managerService().updateProduct(inventoryProduct);
+
+		request.setAttribute("categories", ServiceFactory.productService().getCategories());
+		request.setAttribute("productUpdated", true);
+		request.setAttribute("viewFlag", ViewFlag.setFlag(request, 2));
+		RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
+
 	}
 
 }

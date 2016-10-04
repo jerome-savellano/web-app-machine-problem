@@ -14,7 +14,6 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getUser(String username) {
-		// TODO Auto-generated method stub
 		User user = null;
 		
 		if(ConnectionManager.getConnection() != null){
@@ -30,8 +29,7 @@ public class UserDaoImpl implements UserDao {
 					user = new User(rs.getInt("id"), rs.getInt("user_type"), rs.getString("username"), rs.getString("password"));
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 			
 		}
@@ -42,7 +40,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public String getCartId(int userId) {
-		// TODO Auto-generated method stub
+		
 		String cartId = "";
 		
 		if(ConnectionManager.getConnection() != null){
@@ -59,8 +57,7 @@ public class UserDaoImpl implements UserDao {
 					cartId = rs.getString("cart_id");
 				}	
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 		}
 		

@@ -12,7 +12,6 @@ import com.qbryx.domain.Category;
 import com.qbryx.domain.InventoryProduct;
 import com.qbryx.domain.Product;
 import com.qbryx.managers.RequestDispatcherManager;
-import com.qbryx.util.Parser;
 import com.qbryx.util.ServiceFactory;
 import com.qbryx.util.ViewFlag;
 
@@ -21,26 +20,30 @@ import com.qbryx.util.ViewFlag;
  */
 public class CreateProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CreateProductServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CreateProductServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String name = request.getParameter("name");
 		String upc = request.getParameter("upc");
@@ -48,19 +51,17 @@ public class CreateProductServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		String price = request.getParameter("price");
 		String stock = request.getParameter("stock");
-		
+
 		Product product = new Product(upc, category, name, description, new BigDecimal(price));
 		InventoryProduct inventoryProduct = new InventoryProduct(product, Integer.parseInt(stock));
-		
-		boolean productCreated = ServiceFactory.managerService().addProduct(product, inventoryProduct);
-		
-		if(productCreated){
-			
-			request.setAttribute("categories", ServiceFactory.productService().getCategories());
-			request.setAttribute("productCreated", productCreated);
-			request.setAttribute("viewFlag", ViewFlag.setFlag(request, 3));
-			RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
-		}
+
+		ServiceFactory.managerService().addProduct(inventoryProduct);
+
+		request.setAttribute("categories", ServiceFactory.productService().getCategories());
+		request.setAttribute("productCreated", true);
+		request.setAttribute("viewFlag", ViewFlag.setFlag(request, 3));
+		RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
+
 	}
 
 }

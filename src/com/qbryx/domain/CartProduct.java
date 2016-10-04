@@ -44,5 +44,13 @@ public class CartProduct extends Product{
 	
 	public BigDecimal getTotal(){
 		return getPrice().multiply(new BigDecimal(getQuantity()));
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}	
 }

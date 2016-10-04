@@ -23,4 +23,12 @@ public class Customer extends User{
 	public static Customer customer(HttpServletRequest request){
 		return (Customer) request.getSession().getAttribute("customer");
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

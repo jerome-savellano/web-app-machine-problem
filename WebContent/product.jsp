@@ -23,7 +23,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12" style="padding: 5%;">
-				<h2 class="page-header">${product.getName()}</h2>
+				<form action="logout">
+					<h1 class="page-header">
+						Hi, ${product.getName()}! <input type="submit"
+							class="btn btn-warning btn-xs" value="Logout">
+					</h1>
+				</form>
 				<dl>
 					<dt>
 						<h4>
@@ -81,7 +86,6 @@
 				<form class="form-inline" method="post">
 					<div class="form-group">
 						<label for="quantity">Qty:</label> <input type="number"
-							data-fv-notempty-message="The password is required"
 							class="form-control" name="quantity" min="1" max="100"
 							data-bind="value:replyNumber" required>
 					</div>

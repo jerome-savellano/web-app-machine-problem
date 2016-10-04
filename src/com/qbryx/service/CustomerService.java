@@ -2,17 +2,17 @@ package com.qbryx.service;
 
 import java.util.List;
 
-import com.qbryx.domain.Cart;
 import com.qbryx.domain.CartProduct;
+import com.qbryx.exception.InsufficientStockException;
 
 public interface CustomerService {
 
 	List<CartProduct> getProductsInCart(String cartId);
 	String getCartId(int userId);
 	int getQuantityOfProductInCart(String cartId, String upc);
-	List<String> checkout(String cartId);
+	List<CartProduct> checkout(String cartId) throws InsufficientStockException;
 	
-	boolean addProductInCart(CartProduct cartProduct, String cartId);
-	boolean removeProductInCart(String cartId, String upc);
-	boolean updateProductInCart(String cartId);
+	void addProductInCart(CartProduct cartProduct, String cartId) throws InsufficientStockException;
+	void removeProductInCart(String cartId, String upc);
+	void updateProductInCart(String cartId);
 }

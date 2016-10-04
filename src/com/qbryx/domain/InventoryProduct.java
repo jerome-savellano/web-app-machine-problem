@@ -1,7 +1,5 @@
 package com.qbryx.domain;
 
-import java.math.BigDecimal;
-
 public class InventoryProduct extends Product {
 	
 	private Product product;
@@ -30,4 +28,11 @@ public class InventoryProduct extends Product {
 		this.stock = stock;
 	}
 	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 }

@@ -24,7 +24,12 @@
 
 		<div class="row">
 			<div class="col-md-12" style="padding-left: 15%; padding-right: 15%;">
-				<h1 class="page-header">Update product</h1>
+				<form action="logout">
+					<h2 class="page-header">
+						Update product <input type="submit"
+							class="btn btn-warning btn-xs" value="Logout">
+					</h2>
+				</form>
 				<c:if test="${productCreated}">
 					<div class="alert alert-success fade in">
 						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -43,7 +48,8 @@
 					</div>
 					<div class="form-group">
 						<label for="category">Category</label><input type="text"
-							class="form-control" value="${product.getCategory().getName()}" readonly="readonly" />
+							class="form-control" value="${product.getCategory().getName()}"
+							readonly="readonly" />
 					</div>
 					<div class="form-group">
 						<label for="description">Description</label>
@@ -59,7 +65,8 @@
 							name="stock" class="form-control" value="${product.getStock()}"
 							required />
 					</div>
-					<button type="submit" class="btn btn-primary">Update product</button>
+					<button type="submit" class="btn btn-primary">Update
+						product</button>
 				</form>
 			</div>
 		</div>

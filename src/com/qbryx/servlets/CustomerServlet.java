@@ -1,7 +1,6 @@
 package com.qbryx.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.qbryx.domain.Cart;
-import com.qbryx.domain.Category;
 import com.qbryx.domain.Customer;
 import com.qbryx.managers.RequestDispatcherManager;
 import com.qbryx.util.ServiceFactory;

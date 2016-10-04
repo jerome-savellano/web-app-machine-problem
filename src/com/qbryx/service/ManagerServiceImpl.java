@@ -15,19 +15,18 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	@Override
 	public Product getProductByUpc(String upc) {
-		// TODO Auto-generated method stub
-		return productDao.getProductByUpcMan(upc);
+		return productDao.getInventoryProductByUpc(upc);
 	}
 
 	@Override
-	public boolean addProduct(Product product, InventoryProduct inventoryProduct) {
-		// TODO Auto-generated method stub
-		return productDao.addProduct(product) && productDao.addProductStock(inventoryProduct);
+	public void addProduct(InventoryProduct inventoryProduct) {
+		productDao.addProduct(inventoryProduct); 
+		productDao.addProductStock(inventoryProduct);
 	}
 
 	@Override
-	public boolean updateProduct(Product product, InventoryProduct inventoryProduct) {
-		// TODO Auto-generated method stub
-		return productDao.updateProduct(product) && productDao.updateProductStock(inventoryProduct);
+	public void updateProduct(InventoryProduct inventoryProduct) {
+		productDao.updateProduct(inventoryProduct);
+		productDao.updateProductStock(inventoryProduct);
 	}
 }

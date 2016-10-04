@@ -12,8 +12,7 @@ import com.qbryx.domain.Product;
 import com.qbryx.managers.ConnectionManager;
 
 public class ProductDaoImpl implements ProductDao {
-	
-	private static final String GET_ALL_PRODUCTS = "";
+
 	private static final String GET_PRODUCTS_BY_CATEGORY = "select product.upc, product.name, product.category_id, category.name from product inner join category on product.category_id = category.category_id where category.name = ?";
 	private static final String GET_PRODUCT_BY_UPC_P = "select upc, name, category_id, description, price from product where upc = ?";
 	private static final String GET_PRODUCT_BY_UPC_M = "select p.name, p.price, p.upc, c.category_id, c.name as cname, p.description, pi.stock from product p inner join category c on p.category_id = c.category_id inner join product_inventory pi on p.upc = pi.upc  where p.upc = ?";
@@ -24,16 +23,14 @@ public class ProductDaoImpl implements ProductDao {
 	private static final String UPDATE_PRODUCT = "UPDATE `qbryx`.`product` SET `name` = ?, `description` = ?, `price` = ? WHERE `upc` = ?;";
 	private static final String UPDATE_PRODUCT_INVENTORY = "UPDATE `qbryx`.`product_inventory` SET `stock` = ? WHERE `upc` = ?;";
 	
-	
 	@Override
 	public List<Product> getAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public List<Product> getProductsByCategory(String categoryName) {
-		// TODO Auto-generated method stub
+		
 		List<Product> products = new ArrayList<>();
 			
 		if(ConnectionManager.getConnection() != null){
@@ -55,8 +52,7 @@ public class ProductDaoImpl implements ProductDao {
 					products.add(product);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 		}
 		
@@ -65,8 +61,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product getProductByUpcCust(String upc) {
-		// TODO Auto-generated method stub
+	public Product getProductByUpc(String upc) {
+		
 		Product product = null;
 		
 		if(ConnectionManager.getConnection() != null){
@@ -88,8 +84,7 @@ public class ProductDaoImpl implements ProductDao {
 					product.setPrice(rs.getBigDecimal("price"));
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 		}
 		
@@ -99,7 +94,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public int getStock(String upc) {
-		// TODO Auto-generated method stub
+		
 		int stock = 0;
 		
 		if(ConnectionManager.getConnection() != null){
@@ -116,8 +111,7 @@ public class ProductDaoImpl implements ProductDao {
 					stock = rs.getInt("stock");
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 			
 		}
@@ -127,8 +121,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product getProductByUpcMan(String upc) {
-		// TODO Auto-generated method stub
+	public InventoryProduct getInventoryProductByUpc(String upc) {
+		
 		InventoryProduct product = null;
 		
 		if(ConnectionManager.getConnection() != null){
@@ -152,8 +146,7 @@ public class ProductDaoImpl implements ProductDao {
 					product.setStock(rs.getInt("stock"));
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 		}
 		
@@ -162,8 +155,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public boolean addProduct(Product product) {
-		// TODO Auto-generated method stub
+	public void addProduct(Product product) {
+		
 		if(ConnectionManager.getConnection() != null){
 			PreparedStatement stmt;
 			
@@ -178,23 +171,15 @@ public class ProductDaoImpl implements ProductDao {
 				stmt.executeUpdate();
 				
 				ConnectionManager.close();
-				return true;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
-			
-			
-			
 		}
-		
-		ConnectionManager.close();
-		return false;
 	}
 
 	@Override
-	public boolean addProductStock(InventoryProduct inventoryProduct) {
-		// TODO Auto-generated method stub
+	public void addProductStock(InventoryProduct inventoryProduct) {
+		
 		if(ConnectionManager.getConnection() != null){
 			PreparedStatement stmt;
 			
@@ -206,21 +191,15 @@ public class ProductDaoImpl implements ProductDao {
 				stmt.executeUpdate();
 				
 				ConnectionManager.close();
-				return true;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
-			
 		}
-		
-		ConnectionManager.close();
-		return false;
 	}
 
 	@Override
-	public boolean updateProduct(Product product) {
-		// TODO Auto-generated method stub
+	public void updateProduct(Product product) {
+		
 		if(ConnectionManager.getConnection() != null){
 			PreparedStatement stmt;
 			
@@ -235,22 +214,15 @@ public class ProductDaoImpl implements ProductDao {
 				stmt.executeUpdate();
 				
 				ConnectionManager.close();
-				return true;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
-			
-			
 		}
-		
-		ConnectionManager.close();
-		return false;
 	}
 
 	@Override
-	public boolean updateProductStock(InventoryProduct inventoryProduct) {
-		// TODO Auto-generated method stub
+	public void updateProductStock(InventoryProduct inventoryProduct) {
+		
 		if(ConnectionManager.getConnection() != null){
 			PreparedStatement stmt;
 			
@@ -262,21 +234,15 @@ public class ProductDaoImpl implements ProductDao {
 				stmt.executeUpdate();
 				
 				ConnectionManager.close();
-				return true;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
-			
 		}
-		
-		ConnectionManager.close();
-		return false;
 	}
 
 	@Override
 	public List<InventoryProduct> getProductInventory(String cartId) {
-		// TODO Auto-generated method stub
+		
 		List<InventoryProduct> inventoryProducts = new ArrayList<>();
 		
 		if(ConnectionManager.getConnection() != null){
@@ -291,8 +257,7 @@ public class ProductDaoImpl implements ProductDao {
 					inventoryProducts.add(new InventoryProduct(rs.getString("upc"), rs.getInt("stock")));
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 		}
 		

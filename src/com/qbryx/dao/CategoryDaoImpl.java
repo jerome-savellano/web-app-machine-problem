@@ -16,7 +16,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public List<Category> getCategories() {
-		// TODO Auto-generated method stub
+		
 		List<Category> categories = new ArrayList<>();
 		
 		if(ConnectionManager.getConnection() != null){
@@ -31,8 +31,7 @@ public class CategoryDaoImpl implements CategoryDao {
 					categories.add(category);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 			
 		}
@@ -43,7 +42,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public Category getCategory(String categoryName) {
-		// TODO Auto-generated method stub
+		
 		Category category = null;
 		
 		if(ConnectionManager.getConnection() != null){
@@ -59,8 +58,7 @@ public class CategoryDaoImpl implements CategoryDao {
 					category = new Category(rs.getString("category_id"), rs.getString("name"));
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException();
 			}
 			
 		}
