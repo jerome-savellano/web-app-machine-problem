@@ -20,77 +20,83 @@
 <title>${product.getName()}</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12" style="padding: 5%;">
-				<form action="logout">
-					<h1 class="page-header">
-						Hi, ${product.getName()}! <input type="submit"
-							class="btn btn-warning btn-xs" value="Logout">
-					</h1>
-				</form>
-				<dl>
-					<dt>
-						<h4>
-							<strong>Product price</strong>
-						</h4>
-					</dt>
-					<dd>
-						<h4>
-							<i><span style="color: green;">&#8369;
-									${product.getPrice()}</span>
-						</h4>
-						</i>
-					</dd>
-					<dt>
-						<h4>
-							<strong>UPC</strong>
-						</h4>
-					</dt>
-					<dd>
-						<h4>
-							<i>${product.getUpc()}</i>
-						</h4>
-					</dd>
-					<dt>
-						<h4>
-							<strong>Category</strong>
-						</h4>
-					</dt>
-					<dd>
-						<h4>
-							<i>${category}</i>
-						</h4>
-					</dd>
-					<dt>
-						<h4>
-							<strong>Description</strong>
-						</h4>
-					</dt>
-					<dd>
-						<h5>
-							<i>${product.getDescription()}</i>
-						</h5>
-					</dd>
-					<dt>
-						<h4>
-							<strong>Quantity on cart</strong>
-						</h4>
-					</dt>
-					<dd>
-						<h4>
-							<i>${quantity}</i>
-						</h4>
-					</dd>
-				</dl>
-				<form class="form-inline" method="post">
-					<div class="form-group">
-						<label for="quantity">Qty:</label> <input type="number"
-							class="form-control" name="quantity" min="1" max="100"
-							data-bind="value:replyNumber" required>
-					</div>
-					<button type="submit" class="btn btn-primary">Add to cart</button>
-				</form>
+	<div class="container">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12" style="padding: 5%;">
+					<form action="logout">
+						<h1 class="page-header">
+							Hi, ${product.getName()}! <input type="submit"
+								class="btn btn-warning btn-xs" value="Logout">
+						</h1>
+					</form>
+					<dl>
+						<dt>
+							<h4>
+								<strong>Product price</strong>
+							</h4>
+						</dt>
+						<dd>
+							<h4>
+								<i><span style="color: green;">&#8369;
+										${product.getPrice()}</span>
+							</h4>
+							</i>
+						</dd>
+						<dt>
+							<h4>
+								<strong>UPC</strong>
+							</h4>
+						</dt>
+						<dd>
+							<h4>
+								<i>${product.getUpc()}</i>
+							</h4>
+						</dd>
+						<dt>
+							<h4>
+								<strong>Category</strong>
+							</h4>
+						</dt>
+						<dd>
+							<h4>
+								<i>${category}</i>
+							</h4>
+						</dd>
+						<dt>
+							<h4>
+								<strong>Description</strong>
+							</h4>
+						</dt>
+						<dd>
+							<h5>
+								<i>${product.getDescription()}</i>
+							</h5>
+						</dd>
+						<dt>
+							<h4>
+								<strong>Quantity on cart</strong>
+							</h4>
+						</dt>
+						<dd>
+							<h4>
+								<i>${quantity}</i>
+							</h4>
+						</dd>
+					</dl>
+					<form class="form-inline" method="post">
+						<div class="form-group">
+							<label for="quantity">Qty:</label> <input type="number"
+								class="form-control" name="quantity" min="1" max="100"
+								data-bind="value:replyNumber" required>
+						</div>
+						<button type="submit" class="btn btn-primary">Add to cart</button>
+					</form>
+					<form action="customer" style="padding-top: 3%;">
+						<button type="submit" class="btn btn-warning">Back to
+							Home</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
