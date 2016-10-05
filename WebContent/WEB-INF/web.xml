@@ -42,17 +42,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CustomerProductServlet</servlet-name>
-    <url-pattern>/processProduct</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AddProductToCartServlet</display-name>
-    <servlet-name>AddProductToCartServlet</servlet-name>
-    <servlet-class>com.qbryx.servlets.AddProductToCartServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddProductToCartServlet</servlet-name>
-    <url-pattern>/addProduct</url-pattern>
+    <url-pattern>/customer/processProduct</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -62,7 +52,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RemoveFromCartServlet</servlet-name>
-    <url-pattern>/removeProduct</url-pattern>
+    <url-pattern>/customer/removeProduct</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -72,7 +62,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CheckOutServlet</servlet-name>
-    <url-pattern>/checkout</url-pattern>
+    <url-pattern>/customer/checkout</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -136,12 +126,31 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>sadwdsadw</display-name>
-    <servlet-name>sadwdsadw</servlet-name>
-    <servlet-class>dawdasdw.sadwdsadw</servlet-class>
+    <display-name>ProductInCart</display-name>
+    <servlet-name>ProductInCart</servlet-name>
+    <servlet-class>com.qbryx.servlets.ProductInCart</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>sadwdsadw</servlet-name>
-    <url-pattern>/sadwdsadw</url-pattern>
+    <servlet-name>ProductInCart</servlet-name>
+    <url-pattern>/customer/productCart</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>CustomerFilter</display-name>
+    <filter-name>CustomerFilter</filter-name>
+    <filter-class>com.qbryx.filter.CustomerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CustomerFilter</filter-name>
+    <url-pattern>/customer/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewProductServlet</display-name>
+    <servlet-name>ViewProductServlet</servlet-name>
+    <servlet-class>com.qbryx.servlets.ViewProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewProductServlet</servlet-name>
+    <url-pattern>/customer/viewProduct</url-pattern>
   </servlet-mapping>
 </web-app>

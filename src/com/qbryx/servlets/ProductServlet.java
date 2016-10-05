@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qbryx.domain.Cart;
 import com.qbryx.domain.CartProduct;
 import com.qbryx.domain.Customer;
 import com.qbryx.exception.InsufficientStockException;
+import com.qbryx.helper.CartHelper;
 import com.qbryx.managers.RequestDispatcherManager;
+import com.qbryx.util.Path;
 import com.qbryx.util.ServiceFactory;
 
 /**
@@ -33,16 +36,19 @@ public class ProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		Customer customer = (Customer) request.getSession().getAttribute("customer");
 		String upc = request.getParameter("upc");
 		String category = request.getParameter("category");
 
+		CartHelper cartHelper = new CartHelper();
+
+		cartHelper.populateCartInLayout(customer.getCartId(), request);
 		request.setAttribute("product", ServiceFactory.productService().getProductByUpc(upc));
 		request.setAttribute("category", category);
 		request.setAttribute("quantity",
 				ServiceFactory.customerService().getQuantityOfProductInCart(customer.getCartId(), upc));
-		RequestDispatcherManager.dispatch(this, "/product.jsp", request, response);
+		RequestDispatcherManager.dispatch(this, Path.CUSTOMER_ROOT_PATH + "product.jsp", request, response);
 	}
 
 	/**
@@ -51,22 +57,7 @@ public class ProductServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		CartProduct product = new CartProduct(
-				ServiceFactory.productService().getProductByUpc(request.getParameter("upc")));
-		Customer customer = (Customer) request.getSession().getAttribute("customer");
-		product.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-
-		String cartId = customer.getCartId();
-		
-		try {
-			
-			ServiceFactory.customerService().addProductInCart(product, cartId);
-			response.sendRedirect("success.jsp");
-		} catch (InsufficientStockException e) {
-			
-			response.sendRedirect("insufficient_stock.jsp");
-		}
+		doGet(request, response);
 	}
 
 }

@@ -36,62 +36,13 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-8">
-				<form action="logout">
+				<form action="${pageContext.request.contextPath}/logout">
 					<h1 class="page-header">
-						Hi, ${customer.getUsername()}! <input type="submit"
+						Hi,  ${customer.getUsername()}! <input type="submit"
 							class="btn btn-warning btn-xs" value="Logout">
 					</h1>
 				</form>
-				<c:if test="${checkoutSuccess}">
-					<div class="alert alert-success fade in">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						<strong>Checkout successful!</strong> Continue to shop at QBRYX
-						BRYKaBRAX!
-					</div>
-				</c:if>
-				<c:choose>
-					<c:when test="${empty productsInCart}">
-						<h1 class="text-center text-muted">Your cart is empty. Start
-							shopping!</h1>
-					</c:when>
-					<c:otherwise>
-						<h3 class="text-success">Products in cart</h3>
-						<form class="form-inline" action="checkout">
-							<div class="form-group">
-								<input type="hidden" name="cartId"
-									value="${customer.getCartId()}"> <label for="email"><h4>Total
-										Amount:</h4></label> <input type="text" class="form-control"
-									name="totalAmount" value="&#8369; ${totalAmount}" disabled>
-							</div>
-							<button type="submit" class="btn btn-primary">Checkout</button>
-						</form>
-						<form action="removeProduct" method="post">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>Name</th>
-										<th>Quantity</th>
-										<th>Amount</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${productsInCart}" var="product"
-										varStatus="status">
-										<tr class="warning">
-											<input type="hidden" class="form-control" name="upc"
-												value="${product.getUpc()}">
-											<td>${product.getName()}</td>
-											<td>${product.getQuantity()}</td>
-											<td style="color: green;">&#8369; ${product.getTotal()}</td>
-											<td><input type="submit" class="btn btn-warning btn-xs"
-												value="Remove from cart"></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</form>
-					</c:otherwise>
-				</c:choose>
+				<jsp:include page="cart.jsp"></jsp:include>
 			</div>
 			<div class="col-md-4">
 				<h1 class="page-header">Browse products</h1>
@@ -100,7 +51,7 @@
 						<strong>Oops!</strong> Please select a category.
 					</div>
 				</c:if>
-				<form method="post" action="customer" class="form-inline">
+				<form method="post" action="${pageContext.request.contextPath}/customer/viewProduct" class="form-inline">
 					<div class="form-group" style="padding: 0;">
 						<select class="form-control" name="category">
 							<option selected disabled>SELECT CATEGORY</option>
@@ -116,7 +67,7 @@
 							</div>
 							<c:forEach items="${products}" var="item" varStatus="status">
 								<a
-									href="processProduct?upc=${item.getUpc()}&category=${category}"
+									href="${pageContext.request.contextPath}/customer/processProduct?upc=${item.getUpc()}&category=${category}"
 									class="list-group-item">${item.getName()}</a>
 							</c:forEach>
 						</div>

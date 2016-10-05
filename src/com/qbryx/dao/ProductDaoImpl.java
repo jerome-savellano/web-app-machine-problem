@@ -51,12 +51,14 @@ public class ProductDaoImpl implements ProductDao {
 					
 					products.add(product);
 				}
+				
+				ConnectionManager.close();
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 		}
 		
-		ConnectionManager.close();
+
 		return products;
 	}
 
@@ -83,12 +85,14 @@ public class ProductDaoImpl implements ProductDao {
 					product.setDescription(rs.getString("description"));
 					product.setPrice(rs.getBigDecimal("price"));
 				}
+				
+				ConnectionManager.close();
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 		}
 		
-		ConnectionManager.closeConnection();
+
 		return product;
 	}
 
@@ -110,13 +114,15 @@ public class ProductDaoImpl implements ProductDao {
 				if(rs.next()){
 					stock = rs.getInt("stock");
 				}
+				
+				ConnectionManager.close();
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 			
 		}
 		
-		ConnectionManager.close();
+		
 		return stock;
 	}
 
@@ -145,12 +151,13 @@ public class ProductDaoImpl implements ProductDao {
 					product = new InventoryProduct(mProduct);
 					product.setStock(rs.getInt("stock"));
 				}
+				
+				ConnectionManager.close();
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 		}
 		
-		ConnectionManager.close();
 		return product;
 	}
 
@@ -256,12 +263,14 @@ public class ProductDaoImpl implements ProductDao {
 				while(rs.next()){
 					inventoryProducts.add(new InventoryProduct(rs.getString("upc"), rs.getInt("stock")));
 				}
+				
+				ConnectionManager.close();
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 		}
 		
-		ConnectionManager.close();
+		
 		return inventoryProducts;
 	}
 

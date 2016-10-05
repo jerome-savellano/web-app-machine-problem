@@ -9,6 +9,7 @@ import com.qbryx.dao.ProductDao;
 import com.qbryx.dao.ProductDaoImpl;
 import com.qbryx.dao.UserDao;
 import com.qbryx.dao.UserDaoImpl;
+import com.qbryx.domain.Cart;
 import com.qbryx.domain.CartProduct;
 import com.qbryx.domain.InventoryProduct;
 import com.qbryx.exception.InsufficientStockException;
@@ -97,5 +98,15 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		return invalidProduct;
+	}
+
+	@Override
+	public Cart getCart(String cartId) {
+		// TODO Auto-generated method stub
+		List<CartProduct> cartProducts = getProductsInCart(cartId);
+		
+		Cart cart = new Cart(cartId, cartProducts);
+		
+		return cart;
 	}
 }

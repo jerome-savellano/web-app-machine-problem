@@ -28,13 +28,15 @@ public class UserDaoImpl implements UserDao {
 				if(rs.next()){
 					user = new User(rs.getInt("id"), rs.getInt("user_type"), rs.getString("username"), rs.getString("password"));
 				}
+				
+				ConnectionManager.close();
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 			
 		}
 		
-		ConnectionManager.close();
+		
 		return user;
 	}
 
@@ -56,12 +58,14 @@ public class UserDaoImpl implements UserDao {
 				if(rs.next()){
 					cartId = rs.getString("cart_id");
 				}	
+				
+				ConnectionManager.close();
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 		}
 		
-		ConnectionManager.close();
+		
 		return cartId;
 	}
 

@@ -64,13 +64,14 @@ public class CartDaoImpl implements CartDao {
 					cartProduct.setQuantity(rs.getInt("quantity"));
 
 					cartProducts.add(cartProduct);
+
+					ConnectionManager.close();
 				}
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 		}
 
-		ConnectionManager.close();
 		return cartProducts;
 	}
 
@@ -160,6 +161,8 @@ public class CartDaoImpl implements CartDao {
 					cartProduct.setCartId(rs.getString("cart_id"));
 					cartProduct.setUpc(rs.getString("upc"));
 					cartProduct.setQuantity(rs.getInt("quantity"));
+					
+					ConnectionManager.close();
 				}
 			} catch (SQLException e) {
 				throw new RuntimeException();
@@ -167,7 +170,6 @@ public class CartDaoImpl implements CartDao {
 
 		}
 
-		ConnectionManager.close();
 		return cartProduct;
 	}
 

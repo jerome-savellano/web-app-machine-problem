@@ -29,14 +29,15 @@ public class CategoryDaoImpl implements CategoryDao {
 				while(rs.next()){
 					Category category = new Category(rs.getString("category_id"), rs.getString("name"));
 					categories.add(category);
+					
+					ConnectionManager.close();
 				}
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 			
 		}
-		
-		ConnectionManager.close();
+
 		return categories;
 	}
 
@@ -57,13 +58,14 @@ public class CategoryDaoImpl implements CategoryDao {
 				if(rs.next()){
 					category = new Category(rs.getString("category_id"), rs.getString("name"));
 				}
+				
+				ConnectionManager.close();
 			} catch (SQLException e) {
 				throw new RuntimeException();
 			}
 			
 		}
-		
-		ConnectionManager.close();
+
 		return category;
 	}
 }
