@@ -24,7 +24,7 @@
 
 		<div class="row">
 			<div class="col-md-12" style="padding-left: 15%; padding-right: 15%;">
-				<form action="logout">
+				<form action="${pageContext.request.contextPath}/logout">
 					<h2 class="page-header">
 						Update product <input type="submit"
 							class="btn btn-warning btn-xs" value="Logout">

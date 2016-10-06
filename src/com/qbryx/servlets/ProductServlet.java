@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qbryx.domain.Cart;
-import com.qbryx.domain.CartProduct;
 import com.qbryx.domain.Customer;
-import com.qbryx.exception.InsufficientStockException;
 import com.qbryx.helper.CartHelper;
 import com.qbryx.managers.RequestDispatcherManager;
 import com.qbryx.util.Path;

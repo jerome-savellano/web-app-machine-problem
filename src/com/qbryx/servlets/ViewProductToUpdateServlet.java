@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.qbryx.domain.InventoryProduct;
 import com.qbryx.managers.RequestDispatcherManager;
+import com.qbryx.util.Path;
 import com.qbryx.util.ServiceFactory;
 import com.qbryx.util.ViewFlag;
 
@@ -33,7 +34,7 @@ public class ViewProductToUpdateServlet extends HttpServlet {
 		InventoryProduct product = (InventoryProduct) ServiceFactory.managerService().getProductByUpc(upc);
 
 		request.setAttribute("product", product);
-		RequestDispatcherManager.dispatch(this, "/update_product.jsp", request, response);
+		RequestDispatcherManager.dispatch(this, Path.MANAGEMENET_ROOT_PATH + "update_product.jsp", request, response);
 	}
 
 	/**
@@ -51,10 +52,10 @@ public class ViewProductToUpdateServlet extends HttpServlet {
 			request.setAttribute("productsByCategory",
 					ServiceFactory.productService().getProductsByCategory(category));
 			request.setAttribute("categorySelected", true);
-			RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
+			RequestDispatcherManager.dispatch(this, Path.MANAGEMENET_ROOT_PATH + "management_home.jsp", request, response);
 		}else{
 			request.setAttribute("invalidCategorySelected", true);
-			RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
+			RequestDispatcherManager.dispatch(this, Path.MANAGEMENET_ROOT_PATH + "management_home.jsp", request, response);
 		}
 	}
 }

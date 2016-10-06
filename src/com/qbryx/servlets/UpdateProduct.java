@@ -12,6 +12,7 @@ import com.qbryx.domain.Category;
 import com.qbryx.domain.InventoryProduct;
 import com.qbryx.domain.Product;
 import com.qbryx.managers.RequestDispatcherManager;
+import com.qbryx.util.Path;
 import com.qbryx.util.ServiceFactory;
 import com.qbryx.util.ViewFlag;
 
@@ -61,7 +62,7 @@ public class UpdateProduct extends HttpServlet {
 		request.setAttribute("categories", ServiceFactory.productService().getCategories());
 		request.setAttribute("productUpdated", true);
 		request.setAttribute("viewFlag", ViewFlag.setFlag(request, 2));
-		RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
+		RequestDispatcherManager.dispatch(this, Path.MANAGEMENET_ROOT_PATH + "management_home.jsp", request, response);
 
 	}
 

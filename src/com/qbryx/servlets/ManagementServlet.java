@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.qbryx.managers.RequestDispatcherManager;
+import com.qbryx.util.Path;
 import com.qbryx.util.ServiceFactory;
 
 /**
@@ -34,7 +35,7 @@ public class ManagementServlet extends HttpServlet {
 		
 		request.setAttribute("viewFlag", viewFlag);
 		request.setAttribute("categories", ServiceFactory.productService().getCategories());
-		RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
+		RequestDispatcherManager.dispatch(this, Path.MANAGEMENET_ROOT_PATH + "management_home.jsp", request, response);
 	}
 
 	/**

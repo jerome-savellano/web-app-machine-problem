@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<fmt:setLocale value="${pageContext.request.locale}" />
+<fmt:setBundle basename="com.qbryx.properties.language" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -48,15 +52,15 @@ html, body, .container-table {
 					</c:if>
 					<form action="processLogin" method="post">
 						<div class="form-group">
-							<label for="email" style="color: white;">Username:</label> <input
+							<label for="email" style="color: white;"><fmt:message key="login.username"/></label> <input
 								type="text" class="form-control" name="username"
 								value="${username}" required>
 						</div>
 						<div class="form-group">
-							<label for="pwd" style="color: white;">Password:</label> <input
+							<label for="pwd" style="color: white;"><fmt:message key="login.password"/></label> <input
 								type="password" class="form-control" name="password" required>
 						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
+						<button type="submit" class="btn btn-default"><fmt:message key="login.submit"/></button>
 					</form>
 				</div>
 			</div>

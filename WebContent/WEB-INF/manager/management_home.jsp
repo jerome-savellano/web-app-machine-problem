@@ -157,7 +157,7 @@
 							<strong>Oops!</strong> Please select a category.
 						</div>
 					</c:if>
-					<form method="post" action="viewProd">
+					<form method="post" action="${pageContext.request.contextPath}/management/viewProd">
 						<div class="row" style="padding: 2%;">
 							<c:if test="${productUpdated}">
 								<div class="alert alert-success fade in">

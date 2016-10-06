@@ -92,7 +92,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>SearchServlet</servlet-name>
-    <url-pattern>/search</url-pattern>
+    <url-pattern>/management/search</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -102,7 +102,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CreateProductServlet</servlet-name>
-    <url-pattern>/createProduct</url-pattern>
+    <url-pattern>/management/createProduct</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -112,7 +112,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ViewProductToUpdateServlet</servlet-name>
-    <url-pattern>/viewProd</url-pattern>
+    <url-pattern>/management/viewProd</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -122,7 +122,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateProduct</servlet-name>
-    <url-pattern>/updateProduct</url-pattern>
+    <url-pattern>/management/updateProduct</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

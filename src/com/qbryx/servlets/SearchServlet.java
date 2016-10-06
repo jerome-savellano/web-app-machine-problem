@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.qbryx.domain.Product;
 import com.qbryx.managers.RequestDispatcherManager;
+import com.qbryx.util.Path;
 import com.qbryx.util.ServiceFactory;
 import com.qbryx.util.ViewFlag;
 
@@ -51,7 +52,7 @@ public class SearchServlet extends HttpServlet {
 		request.setAttribute("viewFlag", ViewFlag.setFlag(request, 1));
 		request.setAttribute("productNotFound", productNotFound);
 		request.setAttribute("product", product);
-		RequestDispatcherManager.dispatch(this, "/management_home.jsp", request, response);
+		RequestDispatcherManager.dispatch(this, Path.MANAGEMENET_ROOT_PATH + "management_home.jsp", request, response);
 	}
 
 }
