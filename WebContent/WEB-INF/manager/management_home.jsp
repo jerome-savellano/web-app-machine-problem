@@ -38,7 +38,7 @@
 </head>
 <body>
 	<div class="container">
-		<form action="logout">
+		<form action="${pageContext.request.contextPath}/logout">
 			<h2>
 				Welcome, ${manager.getUsername()}! <input type="submit"
 					class="btn btn-warning btn-xs" value="Logout">
